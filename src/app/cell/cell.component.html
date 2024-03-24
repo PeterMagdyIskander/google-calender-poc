@@ -1,0 +1,23 @@
+<div
+  *ngIf="booking && !hide(); else noBookingFound"
+  class="cell"
+  [ngStyle]="{
+    height: getHeight() + 'px',
+    width: getWidth() + 'px',
+    top: getTop() + 'px',
+    left: getLeft() + 'px'
+  }"
+  (mousedown)="onMouseDownToMove($event)"
+>
+  <p>{{ booking.code }}</p>
+  <p>{{ booking.name }}</p>
+  <p>
+    {{ booking.from.hours }}:{{ booking.from.minutes }} -
+    {{ booking.to.hours }}:{{ booking.to.minutes }}
+  </p>
+  <button (click)="extendDuration()">+</button>
+  <button (click)="decreaseDuration()">-</button>
+  <button (click)="removeBooking()">x</button>
+  <div class="cell-dragging" (mousedown)="onMouseDownToExtend($event)"></div>
+</div>
+<ng-template #noBookingFound></ng-template>

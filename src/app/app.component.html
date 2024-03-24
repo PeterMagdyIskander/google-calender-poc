@@ -1,0 +1,106 @@
+<div>
+  <form [formGroup]="bookRoomForm" (ngSubmit)="onSubmit()">
+    <label>From Hours:</label>
+    <input type="number" formControlName="fromHours" />
+    <label>From Minutes:</label>
+    <input type="number" formControlName="fromMinutes" />
+    <label>To Hours:</label>
+    <input type="number" formControlName="toHours" />
+    <label>To Minutes:</label>
+    <input type="number" formControlName="toMinutes" />
+    <!-- Input field for room name -->
+    <label>Room Name:</label>
+    <input type="text" formControlName="roomName" />
+    <button type="button" (click)="addRoom()">Add Room</button>
+
+    <!-- Display added rooms -->
+    <div *ngFor="let room of bookRoomForm.get('rooms')!.value">
+      {{ room }}
+    </div>
+    <label>Code:</label>
+    <input type="text" formControlName="code" />
+    <label>Name:</label>
+    <input type="text" formControlName="name" />
+
+    <button type="submit" >Submit</button>
+  </form>
+  <table class="tg">
+    <thead>
+      <tr>
+        <th class="cell"></th>
+        <th *ngFor="let room of rooms">
+          {{ room }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hour of hours; let i = index">
+        <td class="cell">{{ hour }}</td>
+        <!-- for Zayed -->
+        <td class="cell">
+          <app-cell
+          *ngFor="let booking of getBooking(hour, 'Zayed'); let i = index"
+            class="hour"
+            [booking]="booking"
+            [roomName]="'Zayed'"
+            [division]="getBooking(hour, 'Zayed').length"
+            [index]="i"
+            [extend]="setExtend(hour, 'Zayed',booking.id)"
+            
+            (deleteBooking)="deleteBooking($event)"
+            (extendTimeMouseDown)="onMouseDownToExtend($event)"
+            (moveMouseDown)="onMouseDownToMove($event)"
+            ></app-cell>
+        </td> 
+        <!-- for October -->
+        <td class="cell">
+          <app-cell
+          *ngFor="let booking of getBooking(hour, 'October'); let i = index"
+            class="hour"
+            [booking]="booking"
+            [roomName]="'October'"
+            [division]="getBooking(hour, 'October').length"
+            [index]="i"
+            [extend]="setExtend(hour, 'October',booking.id)"
+            
+            (deleteBooking)="deleteBooking($event)"
+            (extendTimeMouseDown)="onMouseDownToExtend($event)"
+            (moveMouseDown)="onMouseDownToMove($event)"
+            ></app-cell>
+        </td>
+        <!-- for Mohandseen -->
+        <td class="cell">
+          <app-cell
+          *ngFor="let booking of getBooking(hour, 'Mohandseen'); let i = index"
+            class="hour"
+            [booking]="booking"
+            [roomName]="'Mohandseen'"
+            [division]="getBooking(hour, 'Mohandseen').length"
+            [index]="i"
+            [extend]="setExtend(hour, 'Mohandseen',booking.id)"
+            
+            (deleteBooking)="deleteBooking($event)"
+            (extendTimeMouseDown)="onMouseDownToExtend($event)"
+            (moveMouseDown)="onMouseDownToMove($event)"
+            ></app-cell>
+        </td>
+        <!-- for Haram -->
+        <td class="cell">
+          <app-cell
+          *ngFor="let booking of getBooking(hour, 'Haram'); let i = index"
+            class="hour"
+            [booking]="booking"
+            [roomName]="'Haram'"
+            [division]="getBooking(hour, 'Haram').length"
+            [index]="i"
+            [extend]="setExtend(hour, 'Haram',booking.id)"
+            
+            (deleteBooking)="deleteBooking($event)"
+            (extendTimeMouseDown)="onMouseDownToExtend($event)"
+            (moveMouseDown)="onMouseDownToMove($event)"
+            ></app-cell>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
