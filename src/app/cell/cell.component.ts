@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BookRoom } from '../interfaces/BookRoom';
 import { DragEventExtendTime } from '../interfaces/DragEventExtendTime';
-import { startWith } from 'rxjs';
 
 @Component({
   selector: 'app-cell',
@@ -14,6 +13,9 @@ export class CellComponent implements OnInit {
   @Input() extend: number = 1;
   @Input() division: number = 1;
   @Input() index: number = 1;
+  @Input() color: String="";
+  @Input() lighterColor: String="";
+  @Input() showOperation: boolean=false;
   @Output() deleteBooking: EventEmitter<number> = new EventEmitter();
   @Output() extendTimeMouseDown: EventEmitter<DragEventExtendTime> = new EventEmitter();
   @Output() moveMouseDown: EventEmitter<DragEventExtendTime> = new EventEmitter();
@@ -36,10 +38,10 @@ export class CellComponent implements OnInit {
     return (((this.booking!.to.hours - this.booking!.from.hours) * 50 - (this.booking!.from.minutes * (12.5 / 15)))) + (this.booking!.to.minutes * (12.5 / 15))
   }
   getWidth(): number {
-    return ((this.extend * 110) - 10) * (1 / this.division);
+    return ((this.extend * 125) - 10) * (1 / this.division);
   }
   getLeft(): number {
-    return (this.division > 1) ? (((this.extend * 110)) * (1 / this.division)) * this.index : 0
+    return (this.division > 1) ? (((this.extend * 125)) * (1 / this.division)) * this.index : 0
   }
   getTop(): number {
     return this.booking!.from.minutes * (12.5 / 15);

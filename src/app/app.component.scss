@@ -5,10 +5,12 @@
 .tg {
     border-collapse: collapse;
     border-spacing: 0;
+    color: #64748B;
+    
 }
 
 .tg td {
-    border-color: black;
+    border-color: darken($color: #eee, $amount: 20);
     border-style: solid;
     border-width: 1px;
     font-family: Arial, sans-serif;
@@ -17,7 +19,7 @@
 }
 
 .tg th {
-    border-color: black;
+    border-color: darken($color: #eee, $amount: 20);
     border-style: solid;
     border-width: 1px;
     font-family: Arial, sans-serif;
@@ -25,6 +27,9 @@
     font-weight: normal;
     overflow: hidden;
     word-break: normal;
+    border-top: unset;
+    height: 25px;
+    position: relative;
 }
 
 .tg .tg-0pky {
@@ -35,6 +40,12 @@
 .cell{
     position: relative;
     box-sizing: border-box;
-    width: 110px;
+    width: 125px;
     height: 50px;
+    font-family:'Roboto';
+}
+.time{
+    border: unset !important;
+    text-align: right;
+    padding-right: 15px;
 }

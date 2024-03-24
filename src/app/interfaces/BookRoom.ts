@@ -1,12 +1,14 @@
 import { Time } from "./Time";
 
 export interface BookRoom {
-    id:number;
+    id: number;
     from: Time;
     to: Time;
-    rooms:string[];
+    rooms: string[];
     code: string;
     name: string;
-    hiddenFor:string[];
+    hiddenFor: string[];
+    color: string,
+    showOperation: boolean,
+    lighterColor:string
 }
-  

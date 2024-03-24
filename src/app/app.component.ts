@@ -18,22 +18,19 @@ export class AppComponent implements OnInit {
   dragging = false;
   yOnMousedown = 0;
   bookings: BookRoom[] = [
-    { "id": 1, "from": { hours: 8, minutes: 15 }, "to": { hours: 11, minutes: 15 }, "rooms": ["October"], "code": "dsad", "name": "dsa", "hiddenFor": [] },
-    // { "id": 2, "from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":3,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":4,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":5,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":6,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":7,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":8,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":9,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":10,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":11,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":12,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-    // { "id":13,"from": { hours: 8, minutes: 0 }, "to": { hours: 11, minutes: 0 }, "rooms": ["Zayed"], "code": "Peter", "name": "Peter", "hiddenFor": [] },
-  ];
+    { "id": 1, "from": { hours: 8, minutes: 0 }, "to": { hours: 9, minutes: 0 }, "rooms": ["Zayed", "Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], "color": "#26ACE3","lighterColor":"#d4eef9", "showOperation": true },
+    { "id": 2, "from": { hours: 9, minutes: 0 }, "to": { hours: 12, minutes: 0 }, "rooms": ["Zayed"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#67B69A","lighterColor":"#e1f0eb", "showOperation": false },
+    { "id":3,"from": { hours: 9, minutes: 45 }, "to": { hours: 12, minutes: 30 }, "rooms": ["Mohandseen"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#F5AF07","lighterColor":"#feefcd", "showOperation": true  },
+    { "id":4,"from": { hours: 13, minutes: 0 }, "to": { hours: 14, minutes: 0 }, "rooms": ["Haram"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], "color": "#DF66B0","lighterColor":"#f9e0ef", "showOperation": true },
+    { "id":5,"from": { hours: 8, minutes: 45 }, "to": { hours: 11, minutes: 30 }, "rooms": ["Heliopolis","New Cairo"], "code": "Academy Shooting", "name": "Mohamed ADEL-ANWAR", "hiddenFor": [],"color": "#A97BB4","lighterColor":"#eee5f0", "showOperation": true },
+    { "id":6,"from": { hours: 14, minutes: 0 }, "to": { hours: 15, minutes: 0 }, "rooms": ["October"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], "color": "#DF66B0","lighterColor":"#f9e0ef", "showOperation": false },
+    { "id":7,"from": { hours: 16, minutes: 0 }, "to": { hours: 17, minutes: 0 }, "rooms": ["Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], "color": "#67B69A","lighterColor":"#e1f0eb", "showOperation": false },
+    { "id":8,"from": { hours: 15, minutes: 0 }, "to": { hours: 18, minutes: 0 }, "rooms": ["Haram","Zamalek"], "code": "Academy Shooting", "name": "Mahmoud SHAABAN", "hiddenFor": [],"color": "#A97BB4","lighterColor":"#eee5f0", "showOperation": false },
+    { "id": 9, "from": { hours: 18, minutes: 0 }, "to": { hours: 19, minutes: 0 }, "rooms": ["New Cairo"], "code": "MS117", "name": "Tamer EL-SHAEIR", "hiddenFor": [], "color": "#26ACE3","lighterColor":"#d4eef9", "showOperation": false },
+    { "id":10,"from": { hours: 13, minutes: 0 }, "to": { hours: 16, minutes: 0 }, "rooms": ["Maadi"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#F5AF07","lighterColor":"#feefcd", "showOperation": false  },
+    ];
   hours: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  rooms: string[] = ["Zayed", "October", "Mohandseen", "Haram"];
+  rooms: string[] = ["Zayed", "October", "Mohandseen", "Haram", "Zamalek", "Maadi", "Heliopolis", "New Cairo"];
 
   hideFor: {} = {} //string : string 
   constructor(private formBuilder: FormBuilder) {
@@ -113,7 +110,10 @@ export class AppComponent implements OnInit {
         rooms: this.bookRoomForm.value.rooms,
         code: this.bookRoomForm.value.code,
         name: this.bookRoomForm.value.name,
-        hiddenFor: []
+        hiddenFor: [],
+        color: "",
+        lighterColor: "",
+        showOperation: false,
       };
       // Now you can use formData as needed, e.g., send it to a service for API call
       this.setHiddenBasedOnAdjacency(formData);
@@ -205,7 +205,7 @@ export class AppComponent implements OnInit {
         this.mouseYFromComponent = event.pageY
       }
 
-      if (Math.abs(this.mouseXFromComponent - event.pageX) >= 110) {
+      if (Math.abs(this.mouseXFromComponent - event.pageX) >= 125) {
         let booking = this.bookings.filter(booking => booking.id == this.draggingItemId)[0];
         if (event.pageX - this.mouseXFromComponent > 0) {
           if (booking.rooms.length === 1) {
