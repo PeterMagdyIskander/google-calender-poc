@@ -1,23 +1,23 @@
-<div *ngIf="booking && !hide(); else noBookingFound" class="cell" [ngStyle]="{
+<div
+  *ngIf="booking && !hide(); else noBookingFound"
+  class="cell"
+  [ngStyle]="{
     height: getHeight() + 'px',
-    width: getWidth() + 'px',
+    width: getWidth()-10 + 'px',
     top: getTop() + 'px',
     left: getLeft() + 'px',
     'background-color':lighterColor,
-  }" (mousedown)="onMouseDownToMove($event)">
-  <div class="ribbon" [ngStyle]="{'background-color':color}"></div>
+  }"
+  (mousedown)="onMouseDownToMove($event)"
+>
+  <div class="ribbon" [ngStyle]="{ 'background-color': color }"></div>
   <div class="cell-info">
     <p class="code">{{ booking.code }}</p>
     <p class="name">{{ booking.name }}</p>
   </div>
-  <!-- <p>
-    {{ booking.from.hours }}:{{ booking.from.minutes }} -
-    {{ booking.to.hours }}:{{ booking.to.minutes }}
-  </p>
-  <button (click)="extendDuration()">+</button>
-  <button (click)="decreaseDuration()">-</button>
-  <button (click)="removeBooking()">x</button> -->
   <div class="cell-dragging" (mousedown)="onMouseDownToExtend($event)"></div>
-  <div *ngIf="showOperation" class="cell-operation">Operations</div>
+  <div *ngIf="showOperation" [ngStyle]="{
+    width: getWidth()-10 + 'px',
+  }" class="cell-operation">Operations</div>
 </div>
 <ng-template #noBookingFound></ng-template>

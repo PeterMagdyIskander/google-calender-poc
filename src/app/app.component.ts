@@ -1,14 +1,14 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookRoom } from './interfaces/BookRoom';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { Time } from './interfaces/Time';
 import { DragEventExtendTime } from './interfaces/DragEventExtendTime';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'greater-cairo-room';
@@ -204,21 +204,6 @@ export class AppComponent implements OnInit {
         }
         this.mouseYFromComponent = event.pageY
       }
-
-      if (Math.abs(this.mouseXFromComponent - event.pageX) >= 125) {
-        let booking = this.bookings.filter(booking => booking.id == this.draggingItemId)[0];
-        if (event.pageX - this.mouseXFromComponent > 0) {
-          if (booking.rooms.length === 1) {
-            let newRoomIndex: number = this.rooms.indexOf(booking.rooms[0]) + 1;
-            booking.rooms = [this.rooms[newRoomIndex]];
-          }
-        } else {
-          let newRoomIndex: number = this.rooms.indexOf(booking.rooms[0]) - 1;
-          booking.rooms = [this.rooms[newRoomIndex]];
-        }
-        booking.hiddenFor = []
-        this.mouseXFromComponent = event.pageX
-      }
     }
   }
 
@@ -237,8 +222,8 @@ export class AppComponent implements OnInit {
     this.height = event.height;
   }
   onMouseDownToMove(event: DragEventExtendTime) {
-    this.mouseYFromComponent = event.pageY;
-    this.mouseXFromComponent = event.pageX;
+      this.mouseYFromComponent = event.pageY;
+      this.mouseXFromComponent = event.pageX;
     this.isDraggingToMove = event.isDragging;
     this.draggingItemId = event.id;
     this.height = event.height;

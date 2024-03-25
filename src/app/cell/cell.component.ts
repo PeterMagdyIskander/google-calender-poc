@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BookRoom } from '../interfaces/BookRoom';
 import { DragEventExtendTime } from '../interfaces/DragEventExtendTime';
 
@@ -23,6 +23,7 @@ export class CellComponent implements OnInit {
   height: number = 0;
   right: number = 0;
   top: number = 0;
+  constructor(private componentRef: ElementRef) {}
   ngOnInit(): void {
     this.width = this.getWidth();
     this.right = this.getLeft();
@@ -38,7 +39,7 @@ export class CellComponent implements OnInit {
     return (((this.booking!.to.hours - this.booking!.from.hours) * 50 - (this.booking!.from.minutes * (12.5 / 15)))) + (this.booking!.to.minutes * (12.5 / 15))
   }
   getWidth(): number {
-    return ((this.extend * 125) - 10) * (1 / this.division);
+    return ((this.extend * 125)) * (1 / this.division);
   }
   getLeft(): number {
     return (this.division > 1) ? (((this.extend * 125)) * (1 / this.division)) * this.index : 0
@@ -75,6 +76,7 @@ export class CellComponent implements OnInit {
     this.deleteBooking.emit(this.booking!.id);
   }
   onMouseDownToExtend(event: MouseEvent) {
+    const rect = this.componentRef.nativeElement.getBoundingClientRect();
     let drag: DragEventExtendTime = {
       pageY: event.pageY,
       pageX:event.pageX,
@@ -85,6 +87,7 @@ export class CellComponent implements OnInit {
     this.extendTimeMouseDown.emit(drag);
   }
   onMouseDownToMove(event: MouseEvent) {
+    const rect = this.componentRef.nativeElement.getBoundingClientRect();
     let drag: DragEventExtendTime = {
       pageY: event.pageY,
       pageX:event.pageX,
