@@ -13,30 +13,67 @@ export class AppComponent implements OnInit {
   title = 'greater-cairo-room';
   bookRoomForm!: FormGroup;
   date: Date = new Date();
-;
+  ;
   // private mouseMoveSubject = new Subject<MouseEvent>();
   // private mouseDragSubject = new Subject<DragEvent>();
   dragging = false;
   yOnMousedown = 0;
   bookings: BookRoom[] = [
-    { "id": 1, "from": { hours: 8, minutes: 0 }, "to": { hours: 9, minutes: 0 }, "rooms": ["Zayed", "Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], "color": "#26ACE3","lighterColor":"#d4eef9", "showOperation": true },
-    { "id": 2, "from": { hours: 9, minutes: 0 }, "to": { hours: 12, minutes: 0 }, "rooms": ["Zayed"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#67B69A","lighterColor":"#e1f0eb", "showOperation": false },
-    { "id":3,"from": { hours: 9, minutes: 45 }, "to": { hours: 12, minutes: 30 }, "rooms": ["Mohandseen"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#F5AF07","lighterColor":"#feefcd", "showOperation": true  },
-    { "id":4,"from": { hours: 13, minutes: 0 }, "to": { hours: 14, minutes: 0 }, "rooms": ["Haram"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], "color": "#DF66B0","lighterColor":"#f9e0ef", "showOperation": true },
-    { "id":5,"from": { hours: 8, minutes: 45 }, "to": { hours: 11, minutes: 30 }, "rooms": ["Heliopolis","New Cairo"], "code": "Academy Shooting", "name": "Mohamed ADEL-ANWAR", "hiddenFor": [],"color": "#A97BB4","lighterColor":"#eee5f0", "showOperation": true },
-    { "id":6,"from": { hours: 14, minutes: 0 }, "to": { hours: 15, minutes: 0 }, "rooms": ["October"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], "color": "#DF66B0","lighterColor":"#f9e0ef", "showOperation": false },
-    { "id":7,"from": { hours: 16, minutes: 0 }, "to": { hours: 17, minutes: 0 }, "rooms": ["Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], "color": "#67B69A","lighterColor":"#e1f0eb", "showOperation": false },
-    { "id":8,"from": { hours: 15, minutes: 0 }, "to": { hours: 18, minutes: 0 }, "rooms": ["Haram","Zamalek"], "code": "Academy Shooting", "name": "Mahmoud SHAABAN", "hiddenFor": [],"color": "#A97BB4","lighterColor":"#eee5f0", "showOperation": false },
-    { "id": 9, "from": { hours: 18, minutes: 0 }, "to": { hours: 19, minutes: 0 }, "rooms": ["New Cairo"], "code": "MS117", "name": "Tamer EL-SHAEIR", "hiddenFor": [], "color": "#26ACE3","lighterColor":"#d4eef9", "showOperation": false },
-    { "id":10,"from": { hours: 13, minutes: 0 }, "to": { hours: 16, minutes: 0 }, "rooms": ["Maadi"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], "color": "#F5AF07","lighterColor":"#feefcd", "showOperation": false  },
+    { "id": 1, "from": { hours: 8, minutes: 0 }, "to": { hours: 9, minutes: 0 }, "rooms": ["Zayed", "Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], category: "Training", "showOperation": true },
+    { "id": 2, "from": { hours: 9, minutes: 0 }, "to": { hours: 12, minutes: 0 }, "rooms": ["Zayed"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], category: "U-shape", "showOperation": true },
+    { "id": 3, "from": { hours: 9, minutes: 45 }, "to": { hours: 12, minutes: 30 }, "rooms": ["Mohandseen"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], category: "Workshop", "showOperation": true },
+    { "id": 4, "from": { hours: 13, minutes: 0 }, "to": { hours: 14, minutes: 0 }, "rooms": ["Haram"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], category: "Theatre", "showOperation": true },
+    { "id": 5, "from": { hours: 8, minutes: 45 }, "to": { hours: 11, minutes: 30 }, "rooms": ["Heliopolis", "New Cairo"], "code": "Academy Shooting", "name": "Mohamed ADEL-ANWAR", "hiddenFor": [], category: "Event", "showOperation": true },
+    { "id": 6, "from": { hours: 14, minutes: 0 }, "to": { hours: 15, minutes: 0 }, "rooms": ["October"], "code": "MS87", "name": "Noha NAGI", "hiddenFor": [], category: "Theatre", "showOperation": true },
+    { "id": 7, "from": { hours: 16, minutes: 0 }, "to": { hours: 17, minutes: 0 }, "rooms": ["Mohandseen"], "code": "MS117", "name": "Monica WILSON", "hiddenFor": [], category: "U-shape", "showOperation": true },
+    { "id": 8, "from": { hours: 15, minutes: 0 }, "to": { hours: 18, minutes: 0 }, "rooms": ["Haram", "Zamalek"], "code": "Academy Shooting", "name": "Mahmoud SHAABAN", "hiddenFor": [], category: "Event", "showOperation": true },
+    { "id": 9, "from": { hours: 18, minutes: 0 }, "to": { hours: 19, minutes: 0 }, "rooms": ["New Cairo"], "code": "MS117", "name": "Tamer EL-SHAEIR", "hiddenFor": [], category: "Training", "showOperation": true },
+    { "id": 10, "from": { hours: 13, minutes: 0 }, "to": { hours: 16, minutes: 0 }, "rooms": ["Maadi"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], category: "Workshop", "showOperation": true },
+  ];
+  colorLegend: {
+    title: string;
+    color: string;
+    lighterColor: string;
+  }[] = [
+      {
+        title: "Training",
+        color: "#26ACE3",
+        lighterColor: "#d4eef9",
+      },
+      {
+        title: "Workshop",
+        color: "#F5AF07",
+        lighterColor: "#feefcd"
+      },
+      {
+        title: "Theatre",
+        color: "#DF66B0",
+        lighterColor: "#f9e0ef"
+      },
+      {
+        title: "U-shape",
+        color: "#67B69A",
+        lighterColor: "#e1f0eb"
+      },
+      {
+        title: "Event",
+        color: "#A97BB4",
+        lighterColor: "#eee5f0"
+      },
     ];
   hours: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   rooms: string[] = ["Zayed", "October", "Mohandseen", "Haram", "Zamalek", "Maadi", "Heliopolis", "New Cairo"];
-
+  selectedTitles: string[] = [];
   hideFor: {} = {} //string : string 
   constructor(private formBuilder: FormBuilder) {
   }
-
+  onChange(title: string) {
+    if(this.selectedTitles.includes(title)){
+      this.selectedTitles=this.selectedTitles.filter(t => t != title)
+    }else{
+      this.selectedTitles.push(title)
+    }
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -55,6 +92,7 @@ export class AppComponent implements OnInit {
       rooms: this.formBuilder.array([]), // Assuming you want to dynamically add rooms
       code: ['', Validators.required],
       name: ['', Validators.required],
+      category: ['', Validators.required],
       roomName: ['']
     });
   }
@@ -112,8 +150,7 @@ export class AppComponent implements OnInit {
         code: this.bookRoomForm.value.code,
         name: this.bookRoomForm.value.name,
         hiddenFor: [],
-        color: "",
-        lighterColor: "",
+        category: this.bookRoomForm.value.category,
         showOperation: false,
       };
       // Now you can use formData as needed, e.g., send it to a service for API call
@@ -146,7 +183,11 @@ export class AppComponent implements OnInit {
         bookedRooms.push(booking);
       }
     }
-    return bookedRooms;
+    if (this.selectedTitles.length === 0) {
+      return bookedRooms;
+    } else {
+      return bookedRooms.filter(booking => this.selectedTitles.includes(booking.category))
+    }
   }
   deleteBooking(bookingId: number) {
     this.bookings = this.bookings.filter(booking => booking.id !== bookingId);
@@ -223,12 +264,22 @@ export class AppComponent implements OnInit {
     this.height = event.height;
   }
   onMouseDownToMove(event: DragEventExtendTime) {
-      this.mouseYFromComponent = event.pageY;
-      this.mouseXFromComponent = event.pageX;
+    this.mouseYFromComponent = event.pageY;
+    this.mouseXFromComponent = event.pageX;
     this.isDraggingToMove = event.isDragging;
     this.draggingItemId = event.id;
     this.height = event.height;
   }
 
-
+  getColor(category: string): string {
+    console.log(category)
+    return this.colorLegend.filter(o => o.title === category)[0].color;
+  }
+  getLighterColor(category: string): string {
+    console.log(category)
+    return this.colorLegend.filter(o => o.title === category)[0].lighterColor;
+  }
+  getChecked(title:string){
+    return this.selectedTitles.filter(t => t===title).length>0
+  }
 }

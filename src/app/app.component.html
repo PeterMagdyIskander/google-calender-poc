@@ -1,4 +1,5 @@
 <div>
+  <header></header>
   <form [formGroup]="bookRoomForm" (ngSubmit)="onSubmit()">
     <label>From Hours:</label>
     <input type="number" formControlName="fromHours" />
@@ -21,23 +22,31 @@
     <input type="text" formControlName="code" />
     <label>Name:</label>
     <input type="text" formControlName="name" />
+    <label>Category:</label>
+    <input type="text" formControlName="category" />
 
     <button type="submit">Submit</button>
   </form>
   <br />
+  {{selectedTitles}}
   <br />
   <div class="row">
-    <div class="col-3">
-      <div class="card flex justify-content-center">
-        <p-calendar
-          class="max-w-full"
-          [(ngModel)]="date"
-          [inline]="true"
-          [showWeek]="true"
-        ></p-calendar>
+    <div class="col-2">
+      <div class="color-legend">
+        <div *ngFor="let item of colorLegend">
+          <input
+            type="checkbox"
+            [value]="item.title"
+            [checked]="getChecked(item.title)"
+            (change)="onChange(item.title)"
+            style="margin-right: 5px"
+            [style.accentColor]="item.color"
+          />
+          <p>{{ item.title }}</p>
+        </div>
       </div>
     </div>
-    <div class="col-9">
+    <div class="col-10">
       <table class="tg">
         <thead>
           <tr>
@@ -61,8 +70,8 @@
                 (deleteBooking)="deleteBooking($event)"
                 (extendTimeMouseDown)="onMouseDownToExtend($event)"
                 (moveMouseDown)="onMouseDownToMove($event)"
-                [color]="getBooking(hour, room)[0].color"
-                [lighterColor]="getBooking(hour, room)[0].lighterColor"
+                [color]="getColor(getBooking(hour, room)[0].category)"
+                [lighterColor]="getLighterColor(getBooking(hour, room)[0].category)"
                 [showOperation]="getBooking(hour, room)[0].showOperation"
               ></app-cell>
             </td>

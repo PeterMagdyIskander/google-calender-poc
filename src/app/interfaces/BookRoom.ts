@@ -8,7 +8,6 @@ export interface BookRoom {
     code: string;
     name: string;
     hiddenFor: string[];
-    color: string,
+    category: string,
     showOperation: boolean,
-    lighterColor:string
 }
