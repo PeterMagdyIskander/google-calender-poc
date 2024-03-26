@@ -26,27 +26,49 @@
   </form>
   <br />
   <br />
-  <table class="tg">
-    
-    <thead>
-      <tr>
-        <th class="cell time"></th>
-        <th class="cell" *ngFor="let room of rooms"> {{ room }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let hour of hours; let i = index">
-        <td class="cell time">{{ hour }}</td>
-        <!-- for Zayed -->
-        <td class="cell" *ngFor="let room of rooms">
-          <app-cell *ngFor="let booking of getBooking(hour, room); let i = index" class="hour" [booking]="booking"
-            [roomName]="room" [division]="getBooking(hour, room).length" [index]="i"
-            [extend]="setExtend(hour, room,booking.id)" (deleteBooking)="deleteBooking($event)"
-            (extendTimeMouseDown)="onMouseDownToExtend($event)" (moveMouseDown)="onMouseDownToMove($event)"
-            [color]="getBooking(hour, room)[0].color" [lighterColor]="getBooking(hour, room)[0].lighterColor" [showOperation]="getBooking(hour, room)[0].showOperation" ></app-cell>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-3">
+      <div class="card flex justify-content-center">
+        <p-calendar
+          class="max-w-full"
+          [(ngModel)]="date"
+          [inline]="true"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="col-9">
+      <table class="tg">
+        <thead>
+          <tr>
+            <th class="cell time"></th>
+            <th class="cell" *ngFor="let room of rooms">{{ room }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hour of hours; let i = index">
+            <td class="cell time">{{ hour }}</td>
+            <!-- for Zayed -->
+            <td class="cell" *ngFor="let room of rooms">
+              <app-cell
+                *ngFor="let booking of getBooking(hour, room); let i = index"
+                class="hour"
+                [booking]="booking"
+                [roomName]="room"
+                [division]="getBooking(hour, room).length"
+                [index]="i"
+                [extend]="setExtend(hour, room, booking.id)"
+                (deleteBooking)="deleteBooking($event)"
+                (extendTimeMouseDown)="onMouseDownToExtend($event)"
+                (moveMouseDown)="onMouseDownToMove($event)"
+                [color]="getBooking(hour, room)[0].color"
+                [lighterColor]="getBooking(hour, room)[0].lighterColor"
+                [showOperation]="getBooking(hour, room)[0].showOperation"
+              ></app-cell>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

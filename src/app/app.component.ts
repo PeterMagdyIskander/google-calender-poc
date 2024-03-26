@@ -4,7 +4,6 @@ import { BookRoom } from './interfaces/BookRoom';
 import { Time } from './interfaces/Time';
 import { DragEventExtendTime } from './interfaces/DragEventExtendTime';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +12,8 @@ import { DragEventExtendTime } from './interfaces/DragEventExtendTime';
 export class AppComponent implements OnInit {
   title = 'greater-cairo-room';
   bookRoomForm!: FormGroup;
+  date: Date = new Date();
+;
   // private mouseMoveSubject = new Subject<MouseEvent>();
   // private mouseDragSubject = new Subject<DragEvent>();
   dragging = false;
