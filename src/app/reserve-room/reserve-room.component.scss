@@ -1,0 +1,82 @@
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.reservation-container {
+    width: 422px;
+    padding: 12px 19px 17px 19px;
+    filter: brightness(100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    &-title {
+        all: unset;
+        width: 344px;
+        margin: 0 auto;
+        border-bottom: 1px solid #eee;
+    }
+
+    &-field {
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
+
+        img {
+            width: 12px;
+        }
+
+        &-guests {
+            all: unset;
+        }
+
+        &-location {
+            all: unset;
+        }
+
+        &-rooms {
+            
+            all: unset;
+            cursor: pointer;
+            border: 1px solid #B1B5B4;
+            display: flex;
+            align-items: center;
+            color: #B1B5B4;
+            padding: 4px 3px 4px 13px;
+            border-radius: 5px;
+           
+            span {
+                margin-left: 15px;
+            }
+
+            &-container {
+                width: 136px;
+                margin-left: 25px;
+                padding: 11px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 13px;
+                box-shadow: 0px 3px 6px #00000029;
+                border-radius: 0px 0px 5px 5px;
+            }
+
+            &-item {
+                display: flex;
+                align-items: center;
+                column-gap: 9px;
+
+                &-color {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .active {
+            border: 1px solid #B3D6E5;
+        }
+    }
+}

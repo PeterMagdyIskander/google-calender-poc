@@ -1,1 +1,63 @@
-<p>reserve-room works!</p>
+<div class="reservation-container">
+  <input
+    class="reservation-container-title"
+    type="text"
+    placeholder="Add title"
+  />
+  <div class="reservation-container-field">
+    <img src="../../assets/clock.svg" alt="clock icon" />
+    <p>Wednesday, June 15 - 3:00 - 6:00pm</p>
+  </div>
+  <div>
+    <div class="reservation-container-field">
+      <img src="../../assets/rooms.svg" alt="clock icon" />
+      <button
+        (click)="onClick()"
+        class="reservation-container-field-rooms"
+        [ngClass]="{ active: showRooms }"
+      >
+        Room setup
+        <span class="material-symbols-outlined" *ngIf="!showRooms">
+          expand_more </span
+        ><span class="material-symbols-outlined" *ngIf="showRooms">
+          expand_less
+        </span>
+      </button>
+    </div>
+    <div class="reservation-container-field-rooms-container" *ngIf="showRooms">
+      <div
+        *ngFor="let color of colorLegend"
+        class="reservation-container-field-rooms-item"
+      >
+        <div
+          class="reservation-container-field-rooms-item-color"
+          [style.backgroundColor]="color.color"
+        ></div>
+        <p>{{ color.title }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="reservation-container-field">
+    <img src="../../assets/guests.svg" alt="clock icon" />
+    <input
+      class="reservation-container-field-guests"
+      type="text"
+      placeholder="Guests number"
+    />
+  </div>
+  <div class="reservation-container-field">
+    <img src="../../assets/description.svg" alt="clock icon" />
+    <input
+      class="reservation-container-field-guests"
+      type="text"
+      placeholder="Add description"
+    />
+  </div>
+  <div class="reservation-container-field">
+    <img src="../../assets/location.svg" alt="clock icon" />
+    <input
+      class="reservation-container-field-location"
+      placeholder="Find a room"
+    />
+  </div>
+</div>

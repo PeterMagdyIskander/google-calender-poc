@@ -109,3 +109,28 @@ p,
     color: #FFFFFF;
     margin: 24px 0;
 }
+
+::ng-deep {
+
+    .p-dialog .p-dialog-content,
+    .p-dialog .p-dialog-header {
+        padding: 0;
+        position: relative;
+    }
+
+    .p-dialog .p-dialog-header-icons {
+        position: absolute;
+    }
+
+    .p-dialog{
+        &-header-icons{
+            right: 0px;
+            z-index: 1;
+            top: 0px;
+        }
+    }
+
+    .p-dialog-mask {
+        backdrop-filter: blur(1px);
+    }
+}

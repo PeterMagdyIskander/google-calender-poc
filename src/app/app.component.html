@@ -83,4 +83,7 @@
       </table>
     </div>
   </div>
+  <p-dialog  [(visible)]="visible">
+    <app-reserve-room (closeDialog)="closeDialog()" [colorLegend]="colorLegend"></app-reserve-room>
+  </p-dialog>
 </div>

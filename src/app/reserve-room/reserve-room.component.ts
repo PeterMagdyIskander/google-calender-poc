@@ -1,9 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { BookRoom } from '../interfaces/BookRoom';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { Component, Input } from '@angular/core';
+import { ColorLegend } from '../interfaces/ColorLegend';
+
 @Component({
   selector: 'app-reserve-room',
   templateUrl: './reserve-room.component.html',
@@ -11,11 +8,12 @@ import {
 })
 export class ReserveRoomComponent {
   constructor(
-    public dialogRef: MatDialogRef<ReserveRoomComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: BookRoom,
   ) { }
-
+  @Input() colorLegend:ColorLegend[]=[];
+  showRooms=false;
+  onClick(): void {
+    this.showRooms=!this.showRooms;
+  }
   onNoClick(): void {
-    this.dialogRef.close();
   }
 }

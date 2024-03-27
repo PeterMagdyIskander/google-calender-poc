@@ -3,10 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookRoom } from './interfaces/BookRoom';
 import { Time } from './interfaces/Time';
 import { DragEventExtendTime } from './interfaces/DragEventExtendTime';
-import {
-  MatDialog
-} from '@angular/material/dialog';
-import { ReserveRoomComponent } from './reserve-room/reserve-room.component';
+import { ColorLegend } from './interfaces/ColorLegend';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,11 +30,7 @@ export class AppComponent implements OnInit {
     { "id": 9, "from": { hours: 18, minutes: 0 }, "to": { hours: 19, minutes: 0 }, "rooms": ["New Cairo"], "code": "MS117", "name": "Tamer EL-SHAEIR", "hiddenFor": [], category: "Training", "showOperation": true },
     { "id": 10, "from": { hours: 13, minutes: 0 }, "to": { hours: 16, minutes: 0 }, "rooms": ["Maadi"], "code": "Daste User Training", "name": "Mahmoud SHAABAN", "hiddenFor": [], category: "Workshop", "showOperation": true },
   ];
-  colorLegend: {
-    title: string;
-    color: string;
-    lighterColor: string;
-  }[] = [
+  colorLegend: ColorLegend[] = [
       {
         title: "Training",
         color: "#26ACE3",
@@ -68,7 +61,7 @@ export class AppComponent implements OnInit {
   rooms: string[] = ["Zayed", "October", "Mohandseen", "Haram", "Zamalek", "Maadi", "Heliopolis", "New Cairo"];
   selectedTitles: string[] = [];
   hideFor: {} = {} //string : string 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder) {
   }
   onChange(title: string) {
     if (this.selectedTitles.includes(title)) {
@@ -284,10 +277,9 @@ export class AppComponent implements OnInit {
   visible: boolean = false;
 
   showDialog() {
-    const dialogRef = this.dialog.open(ReserveRoomComponent, {
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    this.visible = true;
+  }
+  closeDialog(){
+    console.log("CLOSING")
   }
 }

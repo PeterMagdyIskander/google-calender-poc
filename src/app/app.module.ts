@@ -9,8 +9,6 @@ import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { ReserveRoomComponent } from './reserve-room/reserve-room.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +22,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     CalendarModule,
     DialogModule,
-    MatSlideToggleModule,
-    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
