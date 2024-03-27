@@ -3,7 +3,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookRoom } from './interfaces/BookRoom';
 import { Time } from './interfaces/Time';
 import { DragEventExtendTime } from './interfaces/DragEventExtendTime';
-
+import {
+  MatDialog
+} from '@angular/material/dialog';
+import { ReserveRoomComponent } from './reserve-room/reserve-room.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -65,12 +68,12 @@ export class AppComponent implements OnInit {
   rooms: string[] = ["Zayed", "October", "Mohandseen", "Haram", "Zamalek", "Maadi", "Heliopolis", "New Cairo"];
   selectedTitles: string[] = [];
   hideFor: {} = {} //string : string 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
   }
   onChange(title: string) {
-    if(this.selectedTitles.includes(title)){
-      this.selectedTitles=this.selectedTitles.filter(t => t != title)
-    }else{
+    if (this.selectedTitles.includes(title)) {
+      this.selectedTitles = this.selectedTitles.filter(t => t != title)
+    } else {
       this.selectedTitles.push(title)
     }
   }
@@ -158,10 +161,8 @@ export class AppComponent implements OnInit {
       this.bookings.push(formData);
       alert("added room successfuly !");
       this.bookRoomForm.reset();
-      console.log(this.bookings)
     } else {
       // Handle form validation errors
-      console.log("Form is invalid");
     }
   }
 
@@ -272,14 +273,21 @@ export class AppComponent implements OnInit {
   }
 
   getColor(category: string): string {
-    console.log(category)
     return this.colorLegend.filter(o => o.title === category)[0].color;
   }
   getLighterColor(category: string): string {
-    console.log(category)
     return this.colorLegend.filter(o => o.title === category)[0].lighterColor;
   }
-  getChecked(title:string){
-    return this.selectedTitles.filter(t => t===title).length>0
+  getChecked(title: string) {
+    return this.selectedTitles.filter(t => t === title).length > 0
+  }
+  visible: boolean = false;
+
+  showDialog() {
+    const dialogRef = this.dialog.open(ReserveRoomComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

@@ -1,6 +1,6 @@
-<div>
-  <header></header>
-  <form [formGroup]="bookRoomForm" (ngSubmit)="onSubmit()">
+<header></header>
+<div class="home-container">
+  <!-- <form [formGroup]="bookRoomForm" (ngSubmit)="onSubmit()">
     <label>From Hours:</label>
     <input type="number" formControlName="fromHours" />
     <label>From Minutes:</label>
@@ -9,12 +9,12 @@
     <input type="number" formControlName="toHours" />
     <label>To Minutes:</label>
     <input type="number" formControlName="toMinutes" />
-    <!-- Input field for room name -->
+    
     <label>Room Name:</label>
     <input type="text" formControlName="roomName" />
     <button type="button" (click)="addRoom()">Add Room</button>
 
-    <!-- Display added rooms -->
+    
     <div *ngFor="let room of bookRoomForm.get('rooms')!.value">
       {{ room }}
     </div>
@@ -26,12 +26,13 @@
     <input type="text" formControlName="category" />
 
     <button type="submit">Submit</button>
-  </form>
-  <br />
-  {{selectedTitles}}
-  <br />
+  </form> -->
+  <!-- <br /> -->
+  <!-- {{selectedTitles}} -->
+  <!-- <br /> -->
   <div class="row">
     <div class="col-2">
+      <button class="reserve-button" (click)="showDialog()">+ Reserve</button>
       <div class="color-legend">
         <div *ngFor="let item of colorLegend">
           <input
@@ -71,7 +72,9 @@
                 (extendTimeMouseDown)="onMouseDownToExtend($event)"
                 (moveMouseDown)="onMouseDownToMove($event)"
                 [color]="getColor(getBooking(hour, room)[0].category)"
-                [lighterColor]="getLighterColor(getBooking(hour, room)[0].category)"
+                [lighterColor]="
+                  getLighterColor(getBooking(hour, room)[0].category)
+                "
                 [showOperation]="getBooking(hour, room)[0].showOperation"
               ></app-cell>
             </td>
