@@ -130,9 +130,9 @@ p,
 
     .p-dialog {
         &-header-icons {
-            right: 0px;
             z-index: 1;
-            top: 0px;
+            right: 17px;
+            top: 10px;
         }
     }
 
@@ -140,4 +140,8 @@ p,
         backdrop-filter: blur(1px);
         backdrop-filter: brightness(90%);
     }
+    
 }
+// ::ng-deep.p-datepicker-header {
+//     display: block !important;
+// }

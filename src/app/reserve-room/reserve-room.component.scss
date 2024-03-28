@@ -6,7 +6,6 @@ p {
 .reservation-container {
     width: 600px;
     padding: 12px 19px 17px 19px;
-    filter: brightness(100%);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -126,9 +125,9 @@ p {
     left: -5px !important;
 }
 
-::ng-deep.p-datepicker-header {
-    display: none !important;
-}
+// ::ng-deep.p-datepicker-header {
+//     display: none !important;
+// }
 
 .save {
     width: fit-content;
