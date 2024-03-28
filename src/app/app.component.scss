@@ -17,6 +17,9 @@ p,
 
 .home-container {
     padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
 }
 
 .tg {
@@ -80,21 +83,24 @@ p,
         display: flex;
         align-items: center;
         column-gap: 9px;
+        margin: 7.5px 0;
 
         p {
             font-size: 16px;
             color: #202124;
         }
+    }
 
-        input {
-            width: 15px;
-            height: 15px;
-            border-color: white;
+    &-checkbox {
+        width: 15px;
+        height: 15px;
+        border-radius: 6px;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        border: 2px solid #ced4da !important;
 
-            &:checked {
-                border-color: white;
-            }
-        }
+        // &:checked {
+        //     border-color: white;
+        // }
     }
 }
 
@@ -122,8 +128,8 @@ p,
         position: absolute;
     }
 
-    .p-dialog{
-        &-header-icons{
+    .p-dialog {
+        &-header-icons {
             right: 0px;
             z-index: 1;
             top: 0px;
@@ -132,5 +138,6 @@ p,
 
     .p-dialog-mask {
         backdrop-filter: blur(1px);
+        backdrop-filter: brightness(90%);
     }
 }

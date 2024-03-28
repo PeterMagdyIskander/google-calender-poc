@@ -12,8 +12,8 @@ import { ColorLegend } from './interfaces/ColorLegend';
 export class AppComponent implements OnInit {
   title = 'greater-cairo-room';
   bookRoomForm!: FormGroup;
-  date: Date = new Date();
-  ;
+  
+  date: Date[] | undefined;
   // private mouseMoveSubject = new Subject<MouseEvent>();
   // private mouseDragSubject = new Subject<DragEvent>();
   dragging = false;

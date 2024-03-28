@@ -30,12 +30,19 @@
   <!-- <br /> -->
   <!-- {{selectedTitles}} -->
   <!-- <br /> -->
-  <div class="row">
-    <div class="col-2">
+    <div>
       <button class="reserve-button" (click)="showDialog()">+ Reserve</button>
+      <div class="card flex justify-content-center">
+        <p-calendar
+          [(ngModel)]="date"
+          [inline]="true"
+          [showWeek]="true"
+        ></p-calendar>
+      </div>
       <div class="color-legend">
         <div *ngFor="let item of colorLegend">
           <input
+            class="color-legend-checkbox"
             type="checkbox"
             [value]="item.title"
             [checked]="getChecked(item.title)"
@@ -47,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="col-10">
+    <div>
       <table class="tg">
         <thead>
           <tr>
@@ -83,7 +90,9 @@
       </table>
     </div>
   </div>
-  <p-dialog  [(visible)]="visible">
-    <app-reserve-room (closeDialog)="closeDialog()" [colorLegend]="colorLegend"></app-reserve-room>
+  <p-dialog [(visible)]="visible">
+    <app-reserve-room
+      (closeDialog)="closeDialog()"
+      [colorLegend]="colorLegend"
+    ></app-reserve-room>
   </p-dialog>
-</div>
