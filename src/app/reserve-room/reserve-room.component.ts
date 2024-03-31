@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { ColorLegend } from '../interfaces/ColorLegend';
 import { Calendar } from 'primeng/calendar';
+import { Setup } from '../interfaces/setup';
 
 @Component({
   selector: 'app-reserve-room',
@@ -13,9 +13,9 @@ export class ReserveRoomComponent {
   
   @ViewChild('myCalendar')
   myCalendar!: Calendar;
-  @Input() colorLegend: ColorLegend[] = [];
+  @Input() colorLegend: Setup[] = [];
   showRoomsSetup = false;
-  roomSetup: ColorLegend | null = null;
+  roomSetup: Setup | null = null;
   date: Date | undefined;
   disabled=false;
   onClick(): void {
@@ -23,7 +23,7 @@ export class ReserveRoomComponent {
   }
   onNoClick(): void {
   }
-  selectRoomSetup(roomSetup: ColorLegend) {
+  selectRoomSetup(roomSetup: Setup) {
     this.roomSetup = roomSetup;
     this.showRoomsSetup = false;
   }

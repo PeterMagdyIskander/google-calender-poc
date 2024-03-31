@@ -1,23 +1,36 @@
 <div
-  *ngIf="booking && !hide(); else noBookingFound"
+  *ngIf="reservation && !hide(); else noReservationFound"
   class="cell"
   [ngStyle]="{
     height: getHeight() + 'px',
-    width: getWidth()-10 + 'px',
+    width: getWidth() - 10 + 'px',
     top: getTop() + 'px',
     left: getLeft() + 'px',
-    'background-color':lighterColor,
+    'background-color': selectedSetup.lighterColor
   }"
+  (click)="handlePopup()"
   (mousedown)="onMouseDownToMove($event)"
 >
-  <div class="ribbon" [ngStyle]="{ 'background-color': color }"></div>
+  <div
+    class="ribbon"
+    [ngStyle]="{ 'background-color': selectedSetup.color }"
+  ></div>
   <div class="cell-info">
-    <p class="code">{{ booking.code }}</p>
-    <p class="name">{{ booking.name }}</p>
+    <p class="code">{{ reservation.name }}</p>
+    <p class="name">{{ reservation.requesterMail }}</p>
   </div>
   <div class="cell-dragging" (mousedown)="onMouseDownToExtend($event)"></div>
-  <div *ngIf="showOperation" [ngStyle]="{
+  <div
+    [ngStyle]="{
     width: getWidth()-10 + 'px',
-  }" class="cell-operation">Operations</div>
+  }"
+    class="cell-operation"
+  >
+    Operations
+  </div>
+  <app-cell-info
+    *ngIf="showInfo"
+    [booking]="reservation"
+  ></app-cell-info>
 </div>
-<ng-template #noBookingFound></ng-template>
+<ng-template #noReservationFound></ng-template>

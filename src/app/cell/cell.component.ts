@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BookRoom } from '../interfaces/BookRoom';
+import { Reservation } from '../interfaces/Reservation';
 import { DragEventExtendTime } from '../interfaces/DragEventExtendTime';
+import { Setup } from '../interfaces/setup';
 
 @Component({
   selector: 'app-cell',
@@ -8,35 +9,31 @@ import { DragEventExtendTime } from '../interfaces/DragEventExtendTime';
   styleUrls: ['./cell.component.scss']
 })
 export class CellComponent implements OnInit {
-  @Input() booking!: BookRoom | null;
+  @Input() reservation!: Reservation | null;
   @Input() roomName!: string;
   @Input() extend: number = 1;
   @Input() division: number = 1;
   @Input() index: number = 1;
-  @Input() color: String="";
-  @Input() lighterColor: String="";
-  @Input() showOperation: boolean=false;
-  @Output() deleteBooking: EventEmitter<number> = new EventEmitter();
+  @Input() setup: Setup[] = [];
+  @Output() deleteReservation: EventEmitter<number> = new EventEmitter();
   @Output() extendTimeMouseDown: EventEmitter<DragEventExtendTime> = new EventEmitter();
   @Output() moveMouseDown: EventEmitter<DragEventExtendTime> = new EventEmitter();
-  width: number = 0;
-  height: number = 0;
-  right: number = 0;
-  top: number = 0;
-  constructor(private componentRef: ElementRef) {}
+  
+  showInfo = false;
+  selectedSetup!: Setup;
+  constructor(private componentRef: ElementRef) { }
   ngOnInit(): void {
-    this.width = this.getWidth();
-    this.right = this.getLeft();
-    this.top = this.getTop();
-    this.height = this.getHeight();
+    this.selectedSetup = this.setup.filter(setup => setup.name === this.reservation!.roomSetup)[0];
   }
   hide(): boolean {
-    if (!this.booking) return true;
-    return this.booking.hiddenFor.includes(this.roomName);
+    if (!this.reservation) return true;
+    return this.reservation.hiddenFor.includes(this.roomName);
   }
   getHeight(): number {
+    let [toHours, toMinutes] = this.reservation!.to.split(":").map(Number);
+    let [fromHours, fromMinutes] = this.reservation!.from.split(":").map(Number);
     // (hours factor - top factor) + minutes factor                       8:15                                           11:15
-    return (((this.booking!.to.hours - this.booking!.from.hours) * 50 - (this.booking!.from.minutes * (12.5 / 15)))) + (this.booking!.to.minutes * (12.5 / 15))
+    return (((toHours - fromHours) * 50 - (fromMinutes * (12.5 / 15)))) + (toMinutes * (12.5 / 15))
   }
   getWidth(): number {
     return ((this.extend * 125)) * (1 / this.division);
@@ -45,57 +42,30 @@ export class CellComponent implements OnInit {
     return (this.division > 1) ? (((this.extend * 125)) * (1 / this.division)) * this.index : 0
   }
   getTop(): number {
-    return this.booking!.from.minutes * (12.5 / 15);
-  }
-  extendDuration() {
-    if (this.booking!.to.minutes < 45) {
-      this.booking!.to.minutes += 15;
-    } else {
-      this.booking!.to.minutes = (this.booking!.to.minutes + 15) % 60;
-      if (this.booking!.to.hours < 19) {
-        this.booking!.to.hours++;
-      }
-    }
+    let [,fromMinutes,] = this.reservation!.from.split(":").map(Number);
+    return fromMinutes * (12.5 / 15);
   }
 
-  // Function to decrement  this.booking!.to
-  decreaseDuration() {
-    if (this.booking!.to.minutes >= 15) {
-      this.booking!.to.minutes -= 15;
-    } else {
-      this.booking!.to.minutes = 45 + this.booking!.to.minutes; // Adjust minutes
-      if (this.booking!.to.hours > 8) {
-        this.booking!.to.hours--;
-      }
-    }
-  }
-
-
-
-  removeBooking() {
-    this.deleteBooking.emit(this.booking!.id);
+  removeReservation() {
+    this.deleteReservation.emit(this.reservation!.id);
   }
   onMouseDownToExtend(event: MouseEvent) {
-    const rect = this.componentRef.nativeElement.getBoundingClientRect();
     let drag: DragEventExtendTime = {
       pageY: event.pageY,
-      pageX:event.pageX,
       isDragging: true,
-      id: this.booking!.id,
-      height: this.getHeight(),
+      id: this.reservation!.id,
     }
     this.extendTimeMouseDown.emit(drag);
   }
   onMouseDownToMove(event: MouseEvent) {
-    const rect = this.componentRef.nativeElement.getBoundingClientRect();
     let drag: DragEventExtendTime = {
       pageY: event.pageY,
-      pageX:event.pageX,
       isDragging: true,
-      id: this.booking!.id,
-      height: this.getHeight(),
+      id: this.reservation!.id,
     }
     this.moveMouseDown.emit(drag);
   }
-
+  handlePopup() {
+    this.showInfo = !this.showInfo;
+  }
 }

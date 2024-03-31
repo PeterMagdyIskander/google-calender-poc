@@ -38,7 +38,7 @@
               class="reservation-container-field-rooms-item-color"
               [style.backgroundColor]="roomSetup!.color"
             ></div>
-            <p>{{ roomSetup?.title }}</p>
+            <p>{{ roomSetup?.name }}</p>
           </div>
         </ng-template>
         <span class="material-symbols-outlined" *ngIf="!showRoomsSetup">
@@ -57,13 +57,13 @@
         *ngFor="let color of colorLegend"
         class="reservation-container-field-rooms-item"
         (click)="selectRoomSetup(color)"
-        [ngClass]="{ selected: roomSetup?.title === color.title }"
+        [ngClass]="{ selected: roomSetup?.name === color.name }"
       >
         <div
           class="reservation-container-field-rooms-item-color"
           [style.backgroundColor]="color.color"
         ></div>
-        <p>{{ color.title }}</p>
+        <p>{{ color.name }}</p>
       </div>
     </div>
   </div>

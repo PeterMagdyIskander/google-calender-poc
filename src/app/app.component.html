@@ -1,98 +1,70 @@
 <header></header>
 <div class="home-container">
-  <!-- <form [formGroup]="bookRoomForm" (ngSubmit)="onSubmit()">
-    <label>From Hours:</label>
-    <input type="number" formControlName="fromHours" />
-    <label>From Minutes:</label>
-    <input type="number" formControlName="fromMinutes" />
-    <label>To Hours:</label>
-    <input type="number" formControlName="toHours" />
-    <label>To Minutes:</label>
-    <input type="number" formControlName="toMinutes" />
-    
-    <label>Room Name:</label>
-    <input type="text" formControlName="roomName" />
-    <button type="button" (click)="addRoom()">Add Room</button>
-
-    
-    <div *ngFor="let room of bookRoomForm.get('rooms')!.value">
-      {{ room }}
+  <div>
+    <button class="reserve-button" (click)="showDialog()">+ Reserve</button>
+    <div class="card flex justify-content-center">
+      <p-calendar
+        [(ngModel)]="date"
+        [inline]="true"
+        [showWeek]="true"
+      ></p-calendar>
     </div>
-    <label>Code:</label>
-    <input type="text" formControlName="code" />
-    <label>Name:</label>
-    <input type="text" formControlName="name" />
-    <label>Category:</label>
-    <input type="text" formControlName="category" />
-
-    <button type="submit">Submit</button>
-  </form> -->
-  <!-- <br /> -->
-  <!-- {{selectedTitles}} -->
-  <!-- <br /> -->
-    <div>
-      <button class="reserve-button" (click)="showDialog()">+ Reserve</button>
-      <div class="card flex justify-content-center">
-        <p-calendar
-          [(ngModel)]="date"
-          [inline]="true"
-          [showWeek]="true"
-        ></p-calendar>
-      </div>
-      <div class="color-legend">
-        <div *ngFor="let item of colorLegend">
-          <input
-            class="color-legend-checkbox"
-            type="checkbox"
-            [value]="item.title"
-            [checked]="getChecked(item.title)"
-            (change)="onChange(item.title)"
-            style="margin-right: 5px"
-            [style.accentColor]="item.color"
-          />
-          <p>{{ item.title }}</p>
-        </div>
+    <div class="color-legend">
+      <div *ngFor="let item of setup">
+        <input
+          class="color-legend-checkbox"
+          type="checkbox"
+          [value]="item.name"
+          [checked]="getChecked(item.name)"
+          (change)="onChange(item.name)"
+          style="margin-right: 5px"
+          [style.accentColor]="item.color"
+        />
+        <p>{{ item.name }}</p>
       </div>
     </div>
-    <div>
-      <table class="tg">
+  </div>
+  <div>
+    <app-scheduler
+      [reservations]="bookings"
+      [setup]="setup"
+      [selectedTitles]="selectedTitles"
+    ></app-scheduler>
+
+    <!-- <table class="tg">
         <thead>
           <tr>
             <th class="cell time"></th>
-            <th class="cell" *ngFor="let room of rooms">{{ room }}</th>
+            <th class="cell" *ngFor="let room of rooms">{{ room.name }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let hour of hours; let i = index">
-            <td class="cell time">{{ hour }}</td>
-            <!-- for Zayed -->
+            <td class="cell time">{{ getTime12HourFormat(hour) }}</td>
             <td class="cell" *ngFor="let room of rooms">
               <app-cell
-                *ngFor="let booking of getBooking(hour, room); let i = index"
+                *ngFor="let booking of getBooking(hour, room.name); let i = index"
                 class="hour"
-                [booking]="booking"
-                [roomName]="room"
-                [division]="getBooking(hour, room).length"
+                [reservation]="booking"
+                [roomName]="room.name"
+                [division]="getBooking(hour, room.name).length"
                 [index]="i"
+                [division]="getBooking(hour, room).length"
                 [extend]="setExtend(hour, room, booking.id)"
-                (deleteBooking)="deleteBooking($event)"
+                (deleteReservation)="deleteBooking($event)"
                 (extendTimeMouseDown)="onMouseDownToExtend($event)"
                 (moveMouseDown)="onMouseDownToMove($event)"
-                [color]="getColor(getBooking(hour, room)[0].category)"
-                [lighterColor]="
-                  getLighterColor(getBooking(hour, room)[0].category)
-                "
-                [showOperation]="getBooking(hour, room)[0].showOperation"
+                [setup]="setup"
               ></app-cell>
             </td>
           </tr>
         </tbody>
-      </table>
-    </div>
+      </table> -->
   </div>
-  <p-dialog [(visible)]="visible">
-    <app-reserve-room
-      (closeDialog)="closeDialog()"
-      [colorLegend]="colorLegend"
-    ></app-reserve-room>
-  </p-dialog>
+</div>
+<p-dialog [(visible)]="visible">
+  <app-reserve-room
+    (closeDialog)="closeDialog()"
+    [colorLegend]="setup"
+  ></app-reserve-room>
+</p-dialog>

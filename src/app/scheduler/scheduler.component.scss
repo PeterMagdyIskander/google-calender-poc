@@ -1,0 +1,56 @@
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #64748B;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.tg td {
+    border-color: darken($color: #eee, $amount: 20);
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    word-break: normal;
+}
+
+.tg th {
+    border-color: darken($color: #eee, $amount: 20);
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    word-break: normal;
+    border-top: unset;
+    height: 25px;
+    position: relative;
+}
+
+.tg .tg-0pky {
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+}
+
+.cell {
+    position: relative;
+    box-sizing: border-box;
+    width: 125px;
+    min-width: 125px;
+    height: 50px;
+    font-family: 'Roboto';
+}
+
+.time {
+    border: unset !important;
+    text-align: right;
+    padding-right: 15px;
+    width: 50px;
+}

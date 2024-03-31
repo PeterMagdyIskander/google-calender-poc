@@ -9,11 +9,15 @@ import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { ReserveRoomComponent } from './reserve-room/reserve-room.component';
+import { CellInfoComponent } from './cell-info/cell-info.component';
+import { SchedulerComponent } from './scheduler/scheduler.component';
 @NgModule({
   declarations: [
     AppComponent,
     CellComponent,
-    ReserveRoomComponent
+    ReserveRoomComponent,
+    CellInfoComponent,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,7 @@ import { ReserveRoomComponent } from './reserve-room/reserve-room.component';
     BrowserAnimationsModule,
     CalendarModule,
     DialogModule,
-    CheckboxModule
+    CheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,56 @@
+<div class="info-container">
+  <div class="info-container-actions">
+    <button><img src="../../assets/edit.svg" alt="edit icon" /></button>
+    <button><img src="../../assets/delete.svg" alt="delete icon" /></button>
+    <button>
+      <img src="../../assets/duplicate.svg" alt="duplicate icon" />
+    </button>
+    <button><img src="../../assets/close.svg" alt="close icon" /></button>
+  </div>
+  <div class="info-container-header">
+    <div
+      class="info-container-header-color"
+      [ngStyle]="{ 'background-color': color }"
+    ></div>
+    <div class="info-container-header-title">
+      <p class="info-container-header-title-code">{{ booking?.name }}</p>
+      <p class="info-container-header-title-date">
+        <span>{{ formatDate() }}</span> - 3:00 - 6:00pm
+      </p>
+    </div>
+  </div>
+  <div class="info-container-guests">
+    <img src="../../assets/guests.svg" alt="guests icon" />
+    <p>24 guests</p>
+  </div>
+  <div class="info-container-description">
+    <img src="../../assets/description.svg" alt="description icon" />
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam odio est
+      maiores fugiat explicabo vitae amet quis praesentium minus fugit.
+    </p>
+  </div>
+  <div class="info-container-location">
+    <img src="../../assets/location.svg" alt="location icon" />
+    <p>Zayed</p>
+  </div>
+  <div class="info-container-requester">
+    <img
+      *ngIf="user?.googleImg; else showFirstLetter"
+      :src="user.googleImg"
+      alt="requester icon"
+    />
+    <ng-template #showFirstLetter>
+      <div [ngStyle]="{ 'background-color': color }">
+        <p>N</p>
+      </div>
+    </ng-template>
+    <p>Noha NAGI</p>
+  </div>
+  <div class="info-container-comments">
+    <img src="../../assets/comment.svg" alt="comments icon" />
+    <p (click)="editingComment = true">
+      +5 mics, Conference Call, Screens, White Board/Flip Charts
+    </p>
+  </div>
+</div>
